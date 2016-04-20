@@ -29,6 +29,26 @@ use `get x path`
 
     |check|get x path|//:p|Some value|
 
+Setting SOAP headers
+====================
+
+You can optionally add SOAP headers to your SOAP request.
+Make sure you add a namespace to add custom SOAP headers, because this is required in the SOAP message.
+The same approach as above is used for filling the SOAP header:
+
+First you add a namespace,
+
+    |add prefix|p|namespace|http://www.example.com/|
+
+then you can set values in the newly defined `p` prefix
+
+    |set x path in header|p:ElementInMessage|value|Some text value|
+
+you can inspect the request using `show request header`
+
+    |show request header|
+
+
 Setting HTTP headers
 ====================
 You can optionally add HTTP headers to your SOAP request, and

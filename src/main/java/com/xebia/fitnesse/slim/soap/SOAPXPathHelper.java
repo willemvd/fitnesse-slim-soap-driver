@@ -1,8 +1,6 @@
 package com.xebia.fitnesse.slim.soap;
 
-import java.util.Iterator;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
+import org.w3c.dom.Node;
 
 import javax.xml.namespace.NamespaceContext;
 import javax.xml.namespace.QName;
@@ -12,8 +10,9 @@ import javax.xml.xpath.XPath;
 import javax.xml.xpath.XPathConstants;
 import javax.xml.xpath.XPathExpressionException;
 import javax.xml.xpath.XPathFactory;
-
-import org.w3c.dom.Node;
+import java.util.Iterator;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 public class SOAPXPathHelper {
 
@@ -31,10 +30,10 @@ public class SOAPXPathHelper {
         xPath.setNamespaceContext(nsContext);
     }
 
-    public void setXPathValue(String path, String data, SOAPElement soapBody)
+    public void setXPathValue(String path, String data, SOAPElement soapElement)
             throws SOAPException, XPathExpressionException {
-        ensurePath(path, soapBody);
-        Node node = (Node) xPath.evaluate(path, soapBody, XPathConstants.NODE);
+        ensurePath(path, soapElement);
+        Node node = (Node) xPath.evaluate(path, soapElement, XPathConstants.NODE);
         if (node == null) {
             throw new IllegalArgumentException(
                     "Could not find node matching xpath '" + path
